@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drive Sections - Add</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1>🚀 Drive Sections - Add</h1>
+    <nav>
+      <a href="/" class="nav-link active">➕ Add</a>
+      <a href="/view" class="nav-link">👁️ View</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Create Section</h2>
+      <form id="section-form">
+        <div class="row">
+          <label>Name</label>
+          <input type="text" id="section-name" placeholder="e.g. Lecture Notes" required />
+        </div>
+        <div class="row">
+          <label>Description (optional)</label>
+          <textarea id="section-desc" placeholder="Short description"></textarea>
+        </div>
+        <button type="submit">Add Section</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Add Link to Section</h2>
+      <form id="link-form">
+        <div class="row">
+          <label>Section</label>
+          <select id="section-select" required>
+            <option value="">Select a section</option>
+          </select>
+        </div>
+        <div class="row">
+          <label>Title</label>
+          <input type="text" id="link-title" placeholder="e.g. Week 1 PDF" required />
+        </div>
+        <div class="row">
+          <label>Google Drive URL</label>
+          <input type="url" id="link-url" placeholder="https://drive.google.com/..." required />
+        </div>
+        <div class="row">
+          <label>Additional text / note</label>
+          <textarea id="link-note" placeholder="e.g. PDF for Chapter 1"></textarea>
+        </div>
+        <button type="submit">Add Link</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Recent Sections</h2>
+      <div id="sections-list"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>✨ Created by R&D Team | Project Idea: K. Subhash Krishna ✨</p>
+  </footer>
+
+  <script src="/add.js" type="module"></script>
+  <script>
+    // Set API base from current origin
+    window.API_BASE = '';
+  </script>
+</body>
+<style>
+  /* Inline focus ring fallback to avoid blue accents */
+  :root { --orange: #ff7a00; --orange-2: #ff9a3d; --bg: #111; --card: #1a1a1a; --text: #f3f3f3; }
+  * { outline-color: var(--orange) !important; }
+</style>
+</html>
+
+

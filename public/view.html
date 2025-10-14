@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drive Sections - View</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1>🚀 Drive Sections - View</h1>
+    <nav>
+      <a href="/" class="nav-link">➕ Add</a>
+      <a href="/view" class="nav-link active">👁️ View</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>All Sections & Links</h2>
+      <div id="sections-list"></div>
+    </section>
+  </main>
+  <footer>
+    <p>✨ Created by R&D Team | Project Idea: K. Subhash Krishna ✨</p>
+  </footer>
+
+  <script src="/view.js" type="module"></script>
+  <script>
+    // Set API base from current origin
+    window.API_BASE = '';
+  </script>
+</body>
+<style>
+  /* Inline focus ring fallback to avoid blue accents */
+  :root { --orange: #ff7a00; --orange-2: #ff9a3d; --bg: #111; --card: #1a1a1a; --text: #f3f3f3; }
+  * { outline-color: var(--orange) !important; }
+</style>
+</html>
