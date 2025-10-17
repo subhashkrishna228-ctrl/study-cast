@@ -92,34 +92,42 @@ function escapeAttribute(str) {
   return escapeHtml(str).replace(/"/g, '&quot;');
 }
 
-// Delete functions
-async function deleteSection(sectionId) {
+// Delete functions - make them globally accessible
+window.deleteSection = async function(sectionId) {
+  console.log('Delete section called with ID:', sectionId);
   if (!confirm('Are you sure you want to delete this section and all its links? This action cannot be undone.')) {
     return;
   }
   
   try {
-    await api(`/api/sections/${sectionId}`, { method: 'DELETE' });
+    console.log('Sending DELETE request to:', `/api/sections/${sectionId}`);
+    const response = await api(`/api/sections/${sectionId}`, { method: 'DELETE' });
+    console.log('Delete section response:', response);
     showSuccess('Section deleted successfully!');
     await loadSections();
   } catch (error) {
+    console.error('Delete section error:', error);
     alert('Failed to delete section. Please try again.');
   }
-}
+};
 
-async function deleteLink(linkId) {
+window.deleteLink = async function(linkId) {
+  console.log('Delete link called with ID:', linkId);
   if (!confirm('Are you sure you want to delete this link? This action cannot be undone.')) {
     return;
   }
   
   try {
-    await api(`/api/links/${linkId}`, { method: 'DELETE' });
+    console.log('Sending DELETE request to:', `/api/links/${linkId}`);
+    const response = await api(`/api/links/${linkId}`, { method: 'DELETE' });
+    console.log('Delete link response:', response);
     showSuccess('Link deleted successfully!');
     await loadSections();
   } catch (error) {
+    console.error('Delete link error:', error);
     alert('Failed to delete link. Please try again.');
   }
-}
+};
 
 function showSuccess(message) {
   const successDiv = document.createElement('div');
