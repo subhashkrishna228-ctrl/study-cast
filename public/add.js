@@ -36,7 +36,7 @@ async function renderSections(sections) {
         <a href="${escapeAttribute(l.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(l.title)}</a>
         ${l.note ? `<div class="link-note">${escapeHtml(l.note)}</div>` : ''}
         <div class="link-actions">
-          <button class="btn-danger btn-small" onclick="deleteLink('${l._id}')">Delete Link</button>
+          <button class="btn-danger btn-small delete-link-btn" data-link-id="${l._id}">Delete Link</button>
         </div>
       </div>
     `).join('');
@@ -45,7 +45,7 @@ async function renderSections(sections) {
         <div class="section-title">
           <h3>${escapeHtml(s.name)}</h3>
           <div class="section-actions">
-            <button class="btn-danger btn-small" onclick="deleteSection('${s._id}')">Delete Section</button>
+            <button class="btn-danger btn-small delete-section-btn" data-section-id="${s._id}">Delete Section</button>
           </div>
         </div>
         ${s.description ? `<div class="section-desc">${escapeHtml(s.description)}</div>` : ''}
@@ -92,8 +92,8 @@ function escapeAttribute(str) {
   return escapeHtml(str).replace(/"/g, '&quot;');
 }
 
-// Delete functions - make them globally accessible
-window.deleteSection = async function(sectionId) {
+// Delete functions
+async function deleteSection(sectionId) {
   console.log('Delete section called with ID:', sectionId);
   if (!confirm('Are you sure you want to delete this section and all its links? This action cannot be undone.')) {
     return;
@@ -109,9 +109,9 @@ window.deleteSection = async function(sectionId) {
     console.error('Delete section error:', error);
     alert('Failed to delete section. Please try again.');
   }
-};
+}
 
-window.deleteLink = async function(linkId) {
+async function deleteLink(linkId) {
   console.log('Delete link called with ID:', linkId);
   if (!confirm('Are you sure you want to delete this link? This action cannot be undone.')) {
     return;
@@ -127,7 +127,7 @@ window.deleteLink = async function(linkId) {
     console.error('Delete link error:', error);
     alert('Failed to delete link. Please try again.');
   }
-};
+}
 
 function showSuccess(message) {
   const successDiv = document.createElement('div');
@@ -139,6 +139,19 @@ function showSuccess(message) {
     successDiv.remove();
   }, 3000);
 }
+
+// Event delegation for delete buttons
+sectionsList.addEventListener('click', async (e) => {
+  if (e.target.classList.contains('delete-section-btn')) {
+    const sectionId = e.target.getAttribute('data-section-id');
+    console.log('Delete section clicked:', sectionId);
+    await deleteSection(sectionId);
+  } else if (e.target.classList.contains('delete-link-btn')) {
+    const linkId = e.target.getAttribute('data-link-id');
+    console.log('Delete link clicked:', linkId);
+    await deleteLink(linkId);
+  }
+});
 
 loadSections().catch(() => {
   sectionsList.innerHTML = '<div class="empty-state">Failed to load sections. Is the server running?</div>';
