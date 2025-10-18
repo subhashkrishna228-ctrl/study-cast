@@ -1,0 +1,25 @@
+{
+  "emulators": {
+    "hosting": {
+      "port": 5000
+    }
+  },
+  "hosting": {
+    "public": "public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "/college/**",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/view",
+        "destination": "/view.html"
+      },
+      {
+        "source": "/",
+        "destination": "/college.html"
+      }
+    ]
+  }
+}

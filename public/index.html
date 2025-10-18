@@ -1,63 +1,77 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Drive Sections - Add</title>
+  <title>Study Cast</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <header>
-    <h1>🚀 Drive Sections - Add</h1>
-    <nav>
-      <a href="/" class="nav-link active">➕ Add</a>
-      <a href="/view" class="nav-link">👁️ View</a>
-    </nav>
+    <h1 id="college-name-header">🎓 Study Cast</h1>
+    <div class="header-actions">
+      <div id="theme-switcher">
+        <button id="light-mode-btn">☀️</button>
+        <button id="dark-mode-btn">🌙</button>
+      </div>
+      <span id="user-role-badge" class="badge" style="display: none;"></span>
+      <nav>
+        <a href="/" class="nav-link active">➕ Add</a>
+        <a href="/view" class="nav-link">👁️ View</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <section class="card">
-      <h2>Create Section</h2>
+    <div class="actions-container">
+        <button id="show-section-form-btn" class="btn-primary">Create New Section</button>
+    </div>
+
+    <section class="card" id="section-creation-card" style="display: none;">
+      <h2>Create a New Section</h2>
+      <p>Organize your links by creating sections (e.g., "Lecture Notes", "Assignments").</p>
       <form id="section-form">
         <div class="row">
-          <label>Name</label>
+          <label for="section-name">Section Name</label>
           <input type="text" id="section-name" placeholder="e.g. Lecture Notes" required />
         </div>
         <div class="row">
-          <label>Description (optional)</label>
-          <textarea id="section-desc" placeholder="Short description"></textarea>
+          <label for="section-desc">Description (optional)</label>
+          <textarea id="section-desc" placeholder="A short description of this section"></textarea>
         </div>
-        <button type="submit">Add Section</button>
+        <button type="submit">Create Section</button>
       </form>
     </section>
 
-    <section class="card">
-      <h2>Add Link to Section</h2>
+    <section class="card" id="link-creation-card" style="display: none;">
+      <h2>Add a Link</h2>
+      <p>Add a new Google Drive link to one of your sections.</p>
       <form id="link-form">
         <div class="row">
-          <label>Section</label>
+          <label for="section-select">Section</label>
           <select id="section-select" required>
             <option value="">Select a section</option>
           </select>
         </div>
         <div class="row">
-          <label>Title</label>
-          <input type="text" id="link-title" placeholder="e.g. Week 1 PDF" required />
+          <label for="link-title">Title</label>
+          <input type="text" id="link-title" placeholder="e.g. Week 1 Slides" required />
         </div>
         <div class="row">
-          <label>Google Drive URL</label>
+          <label for="link-url">Google Drive URL</label>
           <input type="url" id="link-url" placeholder="https://drive.google.com/..." required />
         </div>
         <div class="row">
-          <label>Additional text / note</label>
-          <textarea id="link-note" placeholder="e.g. PDF for Chapter 1"></textarea>
+          <label for="link-note">Note (optional)</label>
+          <textarea id="link-note" placeholder="e.g. Corresponds to Chapter 3"></textarea>
         </div>
         <button type="submit">Add Link</button>
       </form>
     </section>
 
     <section class="card">
-      <h2>Recent Sections</h2>
+      <h2>Your Sections</h2>
       <div id="sections-list"></div>
     </section>
   </main>
@@ -66,17 +80,11 @@
     <p>✨ Created by R&D Team | Project Idea: K. Subhash Krishna ✨</p>
   </footer>
 
-  <script src="/add.js" type="module"></script>
   <script>
-    // Set API base from current origin
-    window.API_BASE = '';
+    window.API_BASE = window.location.origin;
+    window.COLLEGE_ID = window.location.pathname.split('/').pop();
   </script>
+  <script src="/theme.js"></script>
+  <script src="/main.js" type="module"></script>
 </body>
-<style>
-  /* Inline focus ring fallback to avoid blue accents */
-  :root { --orange: #ff7a00; --orange-2: #ff9a3d; --bg: #111; --card: #1a1a1a; --text: #f3f3f3; }
-  * { outline-color: var(--orange) !important; }
-</style>
 </html>
-
-

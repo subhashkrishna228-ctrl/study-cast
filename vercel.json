@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "public": true,
+  "rewrites": [
+    { "source": "/college/:path*", "destination": "/index.html" },
+    { "source": "/view", "destination": "/view.html" },
+    { "source": "/", "destination": "/college.html" }
+  ]
+}

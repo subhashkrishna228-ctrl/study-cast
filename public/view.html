@@ -3,39 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Drive Sections - View</title>
+  <title>View College - Study Cast</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <header>
-    <h1>🚀 Drive Sections - View</h1>
-  </header>
+  <div class="container">
+    <header class="app-header">
+      <h1>🎓 Study Cast</h1>
+      <p>A read-only view of community-curated resources.</p>
+      <div id="theme-switcher">
+        <button id="light-mode-btn">☀️</button>
+        <button id="dark-mode-btn">🌙</button>
+      </div>
+    </header>
 
-  <main>
-    <section class="card">
-      <h2>All Sections & Links</h2>
-      <div id="sections-list"></div>
-    </section>
-  </main>
-  <footer>
-    <p>✨ Created by R&D Team | Project Idea: K. Subhash Krishna ✨</p>
-  </footer>
+    <h2 id="college-name-title" class="page-title">Find a College</h2>
 
-  <script src="/view.js" type="module"></script>
+    <div class="search-container card">
+      <form id="search-form">
+        <input type="text" id="search-name" placeholder="Enter college name to view..." required>
+        <button type="submit" class="btn-primary">Search</button>
+      </form>
+      <div id="search-results"></div>
+    </div>
+
+    <main>
+      <div id="password-prompt-container" class="card" style="display: none;">
+        <form id="password-form">
+            <h3>Password Required</h3>
+            <p>This college requires a password to view its contents.</p>
+            <input type="password" id="college-view-password" placeholder="Enter password" required>
+            <button type="submit" class="btn-primary">View Content</button>
+        </form>
+      </div>
+      <div id="section-filter-container" class="card" style="display: none;">
+          <label for="section-select">Filter by Section:</label>
+          <select id="section-select"></select>
+      </div>
+      <div id="sections-display" class="sections-container" style="display: none;">
+        <!-- Sections and links will be loaded here -->
+      </div>
+    </main>
+
+  </div>
   <script>
-    // Set API base from current origin
-    window.API_BASE = '';
+    window.API_BASE = window.location.origin;
   </script>
+  <script src="/theme.js"></script>
+  <script src="/view/view.js"></script>
 </body>
-<style>
-  /* Inline focus ring fallback to avoid blue accents */
-  :root { --orange: #ff7a00; --orange-2: #ff9a3d; --bg: #111; --card: #1a1a1a; --text: #f3f3f3; }
-  * { outline-color: var(--orange) !important; }
-  
-  /* Center header for view-only page */
-  header {
-    text-align: center;
-    justify-content: center;
-  }
-</style>
 </html>

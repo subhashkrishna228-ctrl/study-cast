@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Cast - Join or Create a College</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="app-header">
+      <h1>🎓 Study Cast</h1>
+      <p>Your collaborative learning hub.</p>
+      <div id="theme-switcher">
+        <button id="light-mode-btn">☀️</button>
+        <button id="dark-mode-btn">🌙</button>
+      </div>
+    </header>
+
+    <div class="actions-container">
+        <button id="show-create-form-btn" class="btn btn-primary">Create a College</button>
+        <button id="show-search-form-btn" class="btn btn-secondary">Find a College</button>
+    </div>
+
+    <div id="create-college-container" class="form-container card" style="display:none;">
+      <h2>Create a New College</h2>
+      <form id="college-form">
+        <input type="text" id="college-name" placeholder="College Name" required>
+        <input type="password" id="college-password" placeholder="Password" required>
+        <button type="submit" class="btn btn-primary">Create College</button>
+      </form>
+    </div>
+
+    <div id="search-college-container" class="form-container card" style="display:none;">
+      <h2>Find Your College</h2>
+      <form id="search-form">
+        <input type="text" id="search-name" placeholder="Enter college name" required>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+      <div id="search-results"></div>
+    </div>
+
+  </div>
+  <script>
+    window.API_BASE = window.location.origin;
+  </script>
+  <script src="/theme.js"></script>
+  <script type="module" src="/college.js"></script>
+</body>
+</html>
