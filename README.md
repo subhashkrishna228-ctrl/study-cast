@@ -125,6 +125,23 @@ mongodb+srv://subhashkrishna:kondamuri@1@cluster0.qt4xf.mongodb.net/drive_links_
 - `MONGODB_URI`: MongoDB Atlas connection string
 - `PORT`: Server port (defaults to 3000)
 
+## Deploying the static frontend to Vercel
+
+If you only want to deploy the static frontend (the contents of `public/`) to Vercel, you can use the Vercel CLI.
+
+1. Install or use via npx:
+
+```powershell
+npx vercel login
+npx vercel
+```
+
+2. When prompted by `npx vercel`, choose the project settings and set the output directory to `public` if asked. The included `vercel.json` rewrites routes so the deployed site will behave like the local app.
+
+Notes:
+- This flow deploys only static files. Your Express API (server.js) will not be deployed by this method. To deploy the API on Vercel you would need to refactor the server into serverless functions under an `api/` directory and configure env vars in the Vercel dashboard.
+
+
 ## Contributing
 
 1. Fork the repository
@@ -136,3 +153,4 @@ mongodb+srv://subhashkrishna:kondamuri@1@cluster0.qt4xf.mongodb.net/drive_links_
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
+# study-cast
